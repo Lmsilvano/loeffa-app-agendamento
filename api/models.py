@@ -11,4 +11,3 @@ class Reservas(models.Model):
     data_hora_inicio = models.DateTimeField()
     data_hora_fim = models.DateTimeField()
     checkin = models.BooleanField(default=False)
-    comentarios = models.TextField(null=True, blank=True)

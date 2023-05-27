@@ -1,5 +1,7 @@
 from django.shortcuts import render
-
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .serializers import ReservasSerializer
 import json
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -20,6 +22,11 @@ def reservasData(request):
     }
     return JsonResponse(data)
 
+@api_view(['GET'])
+def reservas_with_workstations(request):
+    reservas = Reservas.objects.select_related('workstation')
+    serializer = ReservasSerializer(reservas, many=True)
+    return Response(serializer.data)
 
 
 

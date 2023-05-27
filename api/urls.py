@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import reservasData, workstationData
+from .views import reservasData, workstationData, reservas_with_workstations
+ 
 urlpatterns = [
-    path('worworkstationData/', workstationData, name='worworkstationData'),
-    path('reservasData/',reservasData, name='reservasData')
+    path('worworkstations/', workstationData, name='worworkstationData'),
+    path('reservasData/',reservasData, name='reservasData'),
+    path('reservas/', reservas_with_workstations, name='reservas_with_workstations'),
 ]
