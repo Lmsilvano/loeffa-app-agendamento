@@ -1,7 +1,9 @@
 "use client"
 import { useState, useRef, useEffect } from 'react'
 import autoAnimate from '@formkit/auto-animate';
-import { BsEye, BsEyeSlash } from 'react-icons/bs'
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 interface Reserva {
     id: number;
@@ -26,14 +28,16 @@ const Reservas: React.FC<ReservasProps> = ({ reservas }) => {
         parent.current && autoAnimate(parent.current)
     }, [parent])
 
+
     return (
-        <div ref={parent}>
+        <div ref={parent} className="flex items-center flex-col gap-2">
             <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-auto h-auto"
+                className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-auto h-auto `}
                 onClick={handleClick}
             >
                 {!exibirReservas ? <BsEye className="text-4xl" /> : <BsEyeSlash className="text-3xl" />}
             </button>
+            {!exibirReservas && <p className='font-semibold'>Exibir reservas</p>}
 
 
             {exibirReservas && (
@@ -43,9 +47,9 @@ const Reservas: React.FC<ReservasProps> = ({ reservas }) => {
                         {reservas.map((reserva) => (
                             <li key={reserva.id} className="shadow-lg p-5">
                                 <span className='font-semibold'>Usuário: </span><p>{reserva.usuario}</p>
-                                <p>Workstation: {reserva.workstation.serial}</p>
-                                <p>Data e Hora de Início: {reserva.data_hora_inicio}</p>
-                                <p>Data e Hora de Fim: {reserva.data_hora_fim}</p>
+                                <span className='font-semibold'>Workstation: </span><p> {reserva.workstation.serial}</p>
+                                <span className='font-semibold'>Data e Hora de Início: </span><p>{format(new Date(reserva.data_hora_inicio), 'dd MMM HH:mm', { locale: ptBR })}</p>
+                                <span className='font-semibold'>Data e Hora de Fim:</span> <p>{format(new Date(reserva.data_hora_fim), 'dd MMM HH:mm', { locale: ptBR })}</p>
                             </li>
                         ))}
                     </ul>

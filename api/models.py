@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 class Workstation(models.Model):
     serial = models.CharField(max_length=20)
     localizacao = models.CharField(max_length=100)
@@ -11,3 +11,9 @@ class Reservas(models.Model):
     data_hora_inicio = models.DateTimeField()
     data_hora_fim = models.DateTimeField()
     checkin = models.BooleanField(default=False)
+
+
+
+
+
+
