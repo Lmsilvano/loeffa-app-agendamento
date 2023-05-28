@@ -1,6 +1,5 @@
 "use client"
-
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Datepicker from "react-tailwindcss-datepicker";
 import { getDaysBetweenDates, getCurrentDateFormatted } from '../utils/utils.ts'
 
@@ -8,11 +7,7 @@ const periods = ['Manhã', 'Tarde', 'Noite']; // Opções de período para os ra
 
 const options = ['Opção 1', 'Opção 2', 'Opção 3'];
 
-
 async function NovoAgendamento() {
-    const data = await fetch('http://127.0.0.1:8000/api/workstations/')
-    const response = await data.json()
-    console.log(response)
 
     const [value, setValue] = useState({
         startDate: null,
@@ -43,6 +38,9 @@ async function NovoAgendamento() {
     const handleUserNameChange = (event) => {
         setUserName(event.target.value);
     };
+    const data = await fetch('http://127.0.0.1:8000/api/workstations/')
+    const response = await data.json()
+    console.log(response)
 
     return (
         <main className="flex min-h-screen min-w-screen flex-col items-center justify-evenly p-12 md:flex-col md:items-start lg:flex-col lg:items-start">
@@ -143,9 +141,3 @@ async function NovoAgendamento() {
 }
 
 export default NovoAgendamento
-
-
-
-
-
-
