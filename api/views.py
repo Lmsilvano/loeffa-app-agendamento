@@ -10,6 +10,7 @@ from .models import Workstation, Reservas
 # GETS
 
 def workstationData(request):
+    print(request)
     workstation = Workstation.objects.all()
     data = {
         'workstations': list(workstation.values()),
