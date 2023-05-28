@@ -1,23 +1,17 @@
 "use client"
-import React, { useState } from 'react'
+
+import { useState } from 'react'
 import Datepicker from "react-tailwindcss-datepicker";
 import { getDaysBetweenDates, getCurrentDateFormatted } from '../utils/utils.ts'
-import axios from 'axios'
+
 const periods = ['Manhã', 'Tarde', 'Noite']; // Opções de período para os radio buttons
 
 const options = ['Opção 1', 'Opção 2', 'Opção 3'];
 
 
 async function NovoAgendamento() {
-    const config = {
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            'Origin': 'http://localhost:3000'
-        }
-    }
-    const response = await axios.get('http://127.0.0.1:8000/api/workstations', config)
-    const workstations = await response.data
+    const data = await fetch('http://127.0.0.1:8000/api/workstations/')
+    const response = await data.json()
     console.log(response)
 
     const [value, setValue] = useState({
