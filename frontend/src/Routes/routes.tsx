@@ -7,7 +7,13 @@ export const privateRoutes = [
     {
         path: "/",
         element: <HomePage />,
-    }]
+
+    },
+    {
+        path: "novoagendamento",
+        element: <NovoAgendamentoPage />
+    }
+]
 
 
 export const publicRoutes = [

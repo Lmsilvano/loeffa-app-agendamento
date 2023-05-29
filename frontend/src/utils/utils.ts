@@ -2,8 +2,13 @@ import { addDays, format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 export function getDaysBetweenDates(startDate: string, endDate: string): string[] {
+
     const days: string[] = [];
     let currentDate: Date = parseISO(startDate);
+    if (startDate === endDate) {
+        const day: string[] = [format(currentDate, 'MMM dd', { locale: ptBR }).toLowerCase()]
+        return day
+    }
 
     const endDateTime: Date = addDays(parseISO(endDate), 1);
 
