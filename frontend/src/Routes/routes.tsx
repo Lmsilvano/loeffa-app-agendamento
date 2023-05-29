@@ -1,4 +1,5 @@
-/* eslint-disable */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import HomePage from '../Pages/HomePage.tsx'
 import NovoAgendamentoPage from '../Pages/NovoAgendamentoPage.jsx'
 
@@ -15,5 +16,3 @@ export const publicRoutes = [
         element: null
     }
 ]
-
-/* eslint-enable */

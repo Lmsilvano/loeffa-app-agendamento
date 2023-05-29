@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# eslint Ignore
+eslint --ignore-path .gitignore src/Routes
