@@ -1,6 +1,5 @@
 "use client"
 import Link from 'next/link'
-import autoAnimate from '@formkit/auto-animate';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 
 

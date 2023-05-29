@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [    
     '127.0.0.1',
-    '127.0.0.1:8000']
+    '127.0.0.1:5173']
 
 
 # Application definition
@@ -57,18 +57,18 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1',
     'http://127.0.0.1:8000',
-    'http://127.0.0.1:3000',
-    'http://127.0.0.1:3000/agendamento'
-    'http://localhost:3000',
-    'http://localhost:3000/agendamento',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:5173/agendamento'
+    'http://localhost:5173',
+    'http://localhost:5173/agendamento',
 ]
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
     'http://127.0.0.1',
     'http://127.0.0.1:8000'
 ]
