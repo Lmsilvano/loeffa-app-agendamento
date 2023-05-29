@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 
 interface AgendamentoContainerProps {
     dates: string[];
@@ -8,16 +8,34 @@ interface AgendamentoData {
     date: string;
     periodo: string;
     workstation: string;
+    usuario: string;
 }
 
-const AgendamentoContainer: React.FC<AgendamentoContainerProps> = ({ dates }) => {
-    const [agendamentoData, setAgendamentoData] = useState<AgendamentoData[]>([]);
-    const [nomeUsuario, setNomeUsuario] = useState("");
 
-    const handlePeriodoChange = (date: string, periodo: string) => {
+
+const AgendamentoContainer: React.FC<AgendamentoContainerProps> = ({ dates }) => {
+    //const [selectedOption, setSelectedOption] = useState('');
+    const [agendamentoData, setAgendamentoData] = useState<AgendamentoData[]>([]);
+    const [nomeUsuario, setNomeUsuario] = useState('');
+    useEffect(() => {
+        const agendamentos: AgendamentoData[] = dates.map((date: string) => ({
+            date,
+            periodo: '',
+            workstation: '',
+            usuario: ''
+        }));
+        setAgendamentoData(agendamentos)
+    }, [dates]);
+
+    const handlePeriodoChange = (
+        date: string,
+        periodo: string,
+
+    ) => {
         const updatedAgendamentoData = agendamentoData.map((data) =>
             data.date === date ? { ...data, periodo } : data
         );
+        console.log(updatedAgendamentoData, 'newwwwwwwwwwwwwwwwwwwwssssssssss')
         setAgendamentoData(updatedAgendamentoData);
     };
 
@@ -28,62 +46,67 @@ const AgendamentoContainer: React.FC<AgendamentoContainerProps> = ({ dates }) =>
         setAgendamentoData(updatedAgendamentoData);
     };
 
+
     const handleAgendamento = () => {
-        console.log(agendamentoData);
+        const updatedAgendamentoData = agendamentoData.map((data) => {
+            data.usuario = nomeUsuario
+            return data
+        });
+        console.log(updatedAgendamentoData);
     };
 
     return (
-        <div className="max-w-2xl mx-auto bg-cyan-950 text-white p-4">
-            <h1 className="text-2xl font-bold mb-4">Agendamento Container</h1>
-            <table className="w-full border">
+        <div className="w-full md:w-3/4 mx-auto text-cyan-950 p-4">
+            <p className="text-2xl font-bold mb-2 border">Selecione os períodos e as estações de trabalho:</p>
+            <table className="w-full border table-auto">
                 <thead>
                     <tr>
-                        <th className="border px-4 py-2">Data do agendamento</th>
+                        <th className="border px-4 py-2">Dia</th>
                         <th className="border px-4 py-2">Período</th>
-                        <th className="border px-4 py-2">Workstation</th>
+                        <th className="border px-4 py-2">Estações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {dates.map((date) => (
+                    {dates.map((date, i) => (
                         <tr key={date} className="border-cyan-950">
                             <td className="border px-4 py-2">{date}</td>
-                            <td className="border px-4 py-2">
-                                <div>
-                                    <label className="inline-block mr-2">
+                            <td className="border px-4 py-2 flex flex-row justify-center items-center">
+                                <div className="flex flex-col md:flex-row gap-1 w-full md:justify-center md:gap-5">
+                                    <label className="flex">
                                         <input
                                             type="radio"
-                                            name={`periodo-${date}`}
+                                            name={`${date.replace(/\s/g, '')}`}
                                             value="manha"
-                                            checked={agendamentoData.find((data) => data.date === date)?.periodo === "manha"}
-                                            onChange={() => handlePeriodoChange(date, "manha")}
+                                            checked={agendamentoData[i]?.periodo === 'manha'}
+                                            onChange={() => handlePeriodoChange(date, 'manha')}
                                         />
-                                        Manhã
+                                        <p className="ml-2">Manhã</p>
                                     </label>
-                                    <label className="inline-block mr-2">
+                                    <label className="flex">
                                         <input
                                             type="radio"
-                                            name={`periodo-${date}`}
+                                            name={`${date.replace(/\s/g, '')}`}
                                             value="tarde"
-                                            checked={agendamentoData.find((data) => data.date === date)?.periodo === "tarde"}
-                                            onChange={() => handlePeriodoChange(date, "tarde")}
+                                            checked={agendamentoData[i]?.periodo === 'tarde'}
+                                            onChange={() => handlePeriodoChange(date, 'tarde')}
                                         />
-                                        Tarde
+                                        <p className="ml-2">Tarde</p>
                                     </label>
-                                    <label className="inline-block">
+                                    <label className="flex">
                                         <input
                                             type="radio"
-                                            name={`periodo-${date}`}
+                                            name={`${date.replace(/\s/g, '')}`}
                                             value="noite"
-                                            checked={agendamentoData.find((data) => data.date === date)?.periodo === "noite"}
-                                            onChange={() => handlePeriodoChange(date, "noite")}
+                                            checked={agendamentoData[i]?.periodo === 'noite'}
+                                            onChange={() => handlePeriodoChange(date, 'noite')}
                                         />
-                                        Noite
+                                        <p className="ml-2">Noite</p>
                                     </label>
                                 </div>
                             </td>
                             <td className="border px-4 py-2">
                                 <select
-                                    value={agendamentoData.find((data) => data.date === date)?.workstation || ""}
+                                    value={agendamentoData.find((data) => data.date === date)?.workstation || ''}
                                     onChange={(e) => handleWorkstationChange(date, e.target.value)}
                                     className="text-cyan-950 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                                 >
@@ -102,14 +125,14 @@ const AgendamentoContainer: React.FC<AgendamentoContainerProps> = ({ dates }) =>
                     type="text"
                     value={nomeUsuario}
                     onChange={(e) => setNomeUsuario(e.target.value)}
-                    placeholder="Nome do usuário"
-                    className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-cyan-950"
+                    placeholder="Usuário"
+                    className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-cyan-950 w-1/2"
                 />
                 <button
                     onClick={handleAgendamento}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-blue-600"
+                    className="bg-cyan-950 text-white px-1 py-1 rounded-md focus:outline-none hover:bg-blue-600 w-1/3"
                 >
-                    Realizar Agendamento
+                    Agendar
                 </button>
             </div>
         </div>
