@@ -45,18 +45,26 @@ const ReservasContainer = ({ reservas }: any) => {
             )} */}
 
             {exibirReservas && (
-                <div className="mt-4 p-4 bg-cyan-50 shadow-md" >
+                <div className="mt-4 p-4 bg-cyan-50 shadow-md w-auto flex justify-center items-center flex-col" >
                     <h2 className="text-xl font-bold mb-2 text-cyan-950">Reservas:</h2>
-                    <ul>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
                         {reservas.map((reserva: any) => (
-                            <li key={reserva.id} className="shadow-lg p-5">
-                                <span className='font-semibold text-cyan-950'>Usuário: </span><p className='text-cyan-900'>{reserva.usuario}</p>
-                                <span className='font-semibold text-cyan-950'>Workstation: </span><p className='text-cyan-900'> {reserva.workstation.serial}</p>
-                                <span className='font-semibold text-cyan-950'>Data e Hora de Início: </span><p className='text-cyan-900'>{format(new Date(reserva.data_hora_inicio), 'dd MMM HH:mm', { locale: ptBR })}</p>
-                                <span className='font-semibold text-cyan-950'>Data e Hora de Fim:</span> <p className='text-cyan-900'>{format(new Date(reserva.data_hora_fim), 'dd MMM HH:mm', { locale: ptBR })}</p>
-                            </li>
+                            <div className='justify-self-auto '>
+                                <span className='font-semibold text-cyan-950'>Usuário: </span>
+                                <div className="flex items-center justify-start gap-2">
+                                    <img src="https://www.nicepng.com/png/detail/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png" alt=""
+                                        className='h-8 w-8 rounded-md' />
+                                    <p className='text-cyan-700'>{reserva.usuario}</p>
+                                </div>
+
+                                <div key={reserva.id} className="shadow-lg p-5 flex-col flex-1">
+                                    <span className='font-semibold text-cyan-950'>Workstation: </span><p className='text-cyan-700'> {reserva.workstation.serial}</p>
+                                    <span className='font-semibold text-cyan-950'>Data e Hora de Início: </span><p className='text-cyan-700'>{format(new Date(reserva.data_hora_inicio), 'dd MMM HH:mm', { locale: ptBR })}</p>
+                                    <span className='font-semibold text-cyan-950'>Data e Hora de Fim:</span> <p className='text-cyan-700'>{format(new Date(reserva.data_hora_fim), 'dd MMM HH:mm', { locale: ptBR })}</p>
+                                </div>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 </div>
             )}
 

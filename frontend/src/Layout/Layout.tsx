@@ -8,7 +8,8 @@ function Layout({
     return (
         <>
             <Header />
-            <main className="flex min-h-screen min-w-screen flex-col items-center justify-evenly p-12 md:flex-row md:items-start lg:flex-row lg:items-start">
+            <main className="mt-20 flex flex-col gap-10 justify-center items-center p-2 flex-wrap antialiased
+            sm:flex-row">
                 {children}
             </main>
         </>

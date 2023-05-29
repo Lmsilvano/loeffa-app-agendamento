@@ -24,4 +24,3 @@ export function getCurrentDateFormatted() {
 
     return `${year}${month}${day}`;
 }
-

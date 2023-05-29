@@ -4,13 +4,6 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import Layout from "../Layout/Layout";
 
-const baseURL = "http://127.0.0.1:8000/api/reservas";
-const headers = new Headers();
-const options = {
-    method: 'GET',
-    mode: 'cors',
-    cache: 'default'
-};
 
 function HomePage() {
     const [reservas, setReservas] = useState(false)
@@ -30,6 +23,7 @@ function HomePage() {
         <Layout>
             <ReservasContainer reservas={reservas} />
             <BtnNovoAgendamento />
+
         </Layout>
     )
 }
