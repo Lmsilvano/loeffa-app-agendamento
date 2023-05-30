@@ -105,6 +105,7 @@ Isso iniciará o servidor de desenvolvimento na máquina local, e você poderá 
 
 ## Rodar o Frontend
 
+##### Com o Ambiente virtual ativo
 Abra o terminal de sua prefência no diretório /frontend deste projeto(onde se encontra o arquivo package.json). 
 dica :(no windows basta segurar a tecla shift e clicar no fundo da pasta raiz do projeto com o botão direito do mouse e selecionar "abrir janela do powershellaqui") 
 
