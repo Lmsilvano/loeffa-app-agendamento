@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-
+import { formataData } from '../utils/utils.ts'
+import axios from 'axios'
 interface AgendamentoContainerProps {
     dates: string[];
 }
@@ -10,13 +11,20 @@ interface AgendamentoData {
     workstation: string;
     usuario: string;
 }
+interface WorkstationData {
+    serial: string;
+    localizacao: string;
+    configuracoes: string;
+}
 
 
 
 const AgendamentoContainer: React.FC<AgendamentoContainerProps> = ({ dates }) => {
-    //const [selectedOption, setSelectedOption] = useState('');
+    const [workstationData, setWorkstationData] = useState<WorkstationData[]>([]);
     const [agendamentoData, setAgendamentoData] = useState<AgendamentoData[]>([]);
     const [nomeUsuario, setNomeUsuario] = useState('');
+    const [sucess, setSucess] = useState(false)
+    const [errors, setErrors] = useState(false)
     useEffect(() => {
         const agendamentos: AgendamentoData[] = dates.map((date: string) => ({
             date,
@@ -25,6 +33,16 @@ const AgendamentoContainer: React.FC<AgendamentoContainerProps> = ({ dates }) =>
             usuario: ''
         }));
         setAgendamentoData(agendamentos)
+        const fetchData = async () => {
+            const response = await axios.get('/api/workstations/', {
+                headers: {
+                    "secret-key": 'django-insecure-4$mm2r8d$6xr-!_0@rb+ue-_ufd=lg*(6&ncuv+)qj$-@*paq-',
+                },
+            });
+            const data = await response.data;
+            setWorkstationData(data.workstations)
+        }
+        fetchData()
     }, [dates]);
 
     const handlePeriodoChange = (
@@ -35,7 +53,6 @@ const AgendamentoContainer: React.FC<AgendamentoContainerProps> = ({ dates }) =>
         const updatedAgendamentoData = agendamentoData.map((data) =>
             data.date === date ? { ...data, periodo } : data
         );
-        console.log(updatedAgendamentoData, 'newwwwwwwwwwwwwwwwwwwwssssssssss')
         setAgendamentoData(updatedAgendamentoData);
     };
 
@@ -49,10 +66,29 @@ const AgendamentoContainer: React.FC<AgendamentoContainerProps> = ({ dates }) =>
 
     const handleAgendamento = () => {
         const updatedAgendamentoData = agendamentoData.map((data) => {
+            data.date = formataData(data.date)
             data.usuario = nomeUsuario
             return data
         });
         console.log(updatedAgendamentoData);
+        //const request = JSON.stringify(updatedAgendamentoData)
+        createReservas(updatedAgendamentoData)
+    };
+    const createReservas = async (reservas: AgendamentoData[]) => {
+        try {
+            const response = await axios.post('/api/novasreservas/', { reservas });
+            setSucess(true)
+            setTimeout(() => {
+                setSucess(false)
+            }, 3000);
+            console.log(response)
+        } catch (error) {
+            console.error(error);
+            setErrors(true)
+            setTimeout(() => {
+                setErrors(false)
+            }, 3000);
+        }
     };
 
     return (
@@ -110,10 +146,14 @@ const AgendamentoContainer: React.FC<AgendamentoContainerProps> = ({ dates }) =>
                                     onChange={(e) => handleWorkstationChange(date, e.target.value)}
                                     className="text-cyan-950 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                                 >
+
                                     <option value="">Selecione</option>
-                                    <option value="workstation1">Workstation 1</option>
-                                    <option value="workstation2">Workstation 2</option>
-                                    <option value="workstation3">Workstation 3</option>
+                                    {workstationData.length > 0 ? workstationData.map((workstation) => (
+                                        <option value={`${workstation.serial}`} key={workstation.serial}>{workstation.serial}</option>
+                                    ))
+                                        : (<option className='text-red-600'>Sem estações disponíveis para data selecionada.</option>)
+
+                                    }
                                 </select>
                             </td>
                         </tr>
@@ -135,6 +175,8 @@ const AgendamentoContainer: React.FC<AgendamentoContainerProps> = ({ dates }) =>
                     Agendar
                 </button>
             </div>
+            {sucess && (<p className='font-semibold text-green-700 mt-10 text-lg'>Reservas feitas com sucesso!</p>)}
+            {errors && (<h1 className='font-semibold text-red-600 mt-10 text-lg'>Erro!! Preencha corretamente todos os campos, e tente novamente.</h1>)}
         </div>
     );
 };

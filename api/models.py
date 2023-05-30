@@ -10,6 +10,8 @@ class Reservas(models.Model):
     usuario = models.CharField(max_length=30)
     checkin = models.BooleanField(default=False)
     periodo = models.CharField(max_length=15)
+    date = models.DateField()
+
 
 
 

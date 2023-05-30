@@ -12,20 +12,18 @@ function NovoAgendamentoPage() {
 
     const handleDateChange = (date) => {
         if (!date.startDate) {
-            console.log("codorna")
             return
         }
-        console.log(date, 'primeiiiirooooo')
         setSelectedDate(date);
         setDates(getDaysBetweenDates(date.startDate, date.endDate))
-        console.log(getDaysBetweenDates(date.startDate, date.endDate))
     };
     return (
         <Layout>
             <div className="flex flex-col w-3/4">
                 <div className="xl:w-1/2 border shadow-lg border-blue-950 rounded-md p-2 mb-16">
                     <h1 className='xl:text-2xl font-semibold text-cyan-950' >Dica:</h1>
-                    <p className='font-semibold text-cyan-950 text-justify text-xs xl:text-base'>Você pode selecionar uma unica data clicando duas vezes no dia desejado
+                    <p className='font-semibold text-cyan-950 text-justify text-xs md:text-base'>
+                        Você pode selecionar uma unica data clicando duas vezes no dia desejado
                         - a borda do seletor fica redonda confirmando a seleção -,
                         ou agendar um intervalo de tempo, clicando no data de inicio do intervalo
                         e então na data final.</p>

@@ -11,4 +11,4 @@ class ReservasSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reservas
-        fields = ['id', 'usuario', 'data_hora_inicio', 'data_hora_fim', 'checkin', 'workstation']
+        fields = ['id', 'usuario','periodo', 'checkin', 'workstation', 'date']
