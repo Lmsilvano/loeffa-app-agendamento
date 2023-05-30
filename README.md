@@ -10,8 +10,18 @@ A aplicação possui duas telas principais:
 
 1. **Tela de Visualização de Reservas**: Nesta tela, os usuários podem visualizar as reservas existentes para as estações de trabalho disponíveis. É possível visualizar os detalhes das reservas, como a data, período e a estação de trabalho selecionada e o responsável pela reserva. Além disso, há um botão para acessar a segunda tela, onde os usuários podem realizar novas reservas.
 
-2. **Tela de Reservas**: Nesta tela, os usuários podem fazer novas reservas de estações de trabalho. Eles podem selecionar a data e períodos desejados, escolher a estação de trabalho disponível.
+2. **Tela de Reservas**: Nesta tela, os usuários podem fazer novas reservas de estações de trabalho. Eles podem selecionar as datas e períodos desejados, escolher as estações de trabalho disponíveis.
 
+## Endpoints Django <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" height="30" width="42" alt="django logo"  />
+####  http://127.0.0.1:8000/admin
+Painel administrativo, permite o crud de dados de Reservas e Workingstations
+
+#### http://127.0.0.1:8000/api/workstations/
+ retorna as estações cadastradas
+#### http://127.0.0.1:8000/api/reservas/
+retorna as reservas feitas
+#### http://127.0.0.1:8000/api/novasreservas/
+através de dados enviados no body da requisição cria uma ou mais reserv
 # Principais tecnologias Utilizadas
 
 A aplicação foi desenvolvida utilizando as seguintes tecnologias:
