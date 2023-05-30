@@ -95,7 +95,7 @@ Isso iniciará o servidor de desenvolvimento na máquina local, e você poderá 
 
 ## Rodar o Frontend
 
-Abra o terminal de sua prefência no diretório frontend deste projeto(onde se encontra o arquivo package.json). 
+Abra o terminal de sua prefência no diretório /frontend deste projeto(onde se encontra o arquivo package.json). 
 dica :(no windows basta segurar a tecla shift e clicar no fundo da pasta raiz do projeto com o botão direito do mouse e selecionar "abrir janela do powershellaqui") 
 
 - com terminal aberto no diretório frontend do projeto, execute o comando: 
@@ -103,7 +103,7 @@ dica :(no windows basta segurar a tecla shift e clicar no fundo da pasta raiz do
 $ npm install -y
 ```
 
-- Após concluir a instalação, mantendo-se no diretório raiz do projeto, execute o comando:
+- Após concluir a instalação, mantendo-se no diretório frontend do projeto, execute o comando:
 ```bash
 $ npm run dev
 ```
