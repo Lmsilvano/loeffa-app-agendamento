@@ -8,18 +8,29 @@ Se você está revisando este repositório como parte do processo seletivo, agra
 
 A aplicação possui duas telas principais:
 
-1. **Tela de Visualização de Reservas**: Nesta tela, os usuários podem visualizar as reservas existentes para as estações de trabalho disponíveis. É possível visualizar os detalhes das reservas, como a data e horário, a estação de trabalho selecionada e o responsável pela reserva. Além disso, há um botão para acessar a segunda tela, onde os usuários podem realizar novas reservas.
+1. **Tela de Visualização de Reservas**: Nesta tela, os usuários podem visualizar as reservas existentes para as estações de trabalho disponíveis. É possível visualizar os detalhes das reservas, como a data, período e a estação de trabalho selecionada e o responsável pela reserva. Além disso, há um botão para acessar a segunda tela, onde os usuários podem realizar novas reservas.
 
-2. **Tela de Reservas**: Nesta tela, os usuários podem fazer novas reservas de estações de trabalho. Eles podem selecionar a data e horário desejados, escolher a estação de trabalho disponível e inserir as informações necessárias, como o nome e contato do responsável pela reserva.
+2. **Tela de Reservas**: Nesta tela, os usuários podem fazer novas reservas de estações de trabalho. Eles podem selecionar a data e períodos desejados, escolher a estação de trabalho disponível.
 
-# Tecnologias Utilizadas
+# Principais tecnologias Utilizadas
 
 A aplicação foi desenvolvida utilizando as seguintes tecnologias:
 
-- ![React](https://img.icons8.com/ios/20/000000/react-native.png) React
-- ![TypeScript](https://img.icons8.com/color/20/000000/typescript.png) TypeScript (TSX)
-- ![Django](https://img.icons8.com/color/20/000000/django.png) Django
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="30" width="42" alt="react logo"  />) React
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-plain.svg" height="30" width="42" alt="typescript logo"  /> Typescript
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="30" width="42" alt="python logo"  /> Python
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" height="30" width="42" alt="django logo"  /> Django
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" height="30" width="42" alt="tailwindcss logo"  /> Tailwind
 
+
+# Dificuldades
+
+Durante o desenvolvimento deste projeto, enfrentei algumas dificuldades que gostaria de destacar:
+
+
+Problemas com o Next.js em decorrência da inexperiência com Django: Inicialmente, optei por utilizar o Next.js como framework de frontend para este projeto. No entanto, encontrei diversos erros de CORS (Cross-Origin Resource Sharing) ao tentar fazer requisições da aplicação para o backend em Django. Esses erros acabaram dificultando a comunicação entre o frontend e o backend, e tive que refazer todo o frontend utilizando react tsx puro gerado com vite. Com isso perdi muito tempo e acabei deixando detalhes impostantes da interface passarem em branco.
+
+Familiarização com o Django: Como nunca tinha utilizado o Django anteriormente, enfrentei dificuldades em contornar os erros de CORS mencionados anteriormente. A falta de experiência com o framework dificultou a resolução desses problemas específicos.
 
 
 # Instruções para rodar o Projeto
