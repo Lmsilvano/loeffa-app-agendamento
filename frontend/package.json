@@ -13,7 +13,7 @@
   "dependencies": {
     "@formkit/auto-animate": "^1.0.0-beta.6",
     "@types/react-datepicker": "^4.11.2",
-    "axios": "^1.4.0",
+    "axios": "^1.6.0",
     "date-fns": "^2.30.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
